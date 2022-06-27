@@ -21,13 +21,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             statusButton.action = #selector(togglePopover)
         }
 
-        let popover = NSPopover()
+        popover = NSPopover()
 
         popover.contentSize = NSSize(width: Constants.UI.popoverSize.width, height: Constants.UI.popoverSize.height)
         popover.behavior = .transient
         popover.contentViewController = NSHostingController(rootView: view())
-
-        self.popover = popover
     }
 
     private func view() -> some View {
