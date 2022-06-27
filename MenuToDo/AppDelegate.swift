@@ -29,7 +29,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     private func view() -> some View {
-        ContentView()
+        ToDoExperience()
+            .frame(width: Constants.UI.popoverSize.width, height: Constants.UI.popoverSize.height)
             .environmentObject(theme)
     }
 
