@@ -8,6 +8,9 @@
 import Foundation
 
 enum Constants {
+    enum App {
+        static let bundleIdentifier = Bundle.main.bundleIdentifier!
+    }
     enum UI {
         static let popoverSize = CGSize(width: 150, height: 300)
     }

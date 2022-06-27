@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum IconNames {
+enum IconNames: Codable {
     case listBulletFill
 
     var systemSymbolName: String {

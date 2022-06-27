@@ -12,7 +12,7 @@ final class Theme: ObservableObject {
     @Published private(set) var menubarIcon: IconNames
     
     init() {
-        self.menubarIcon = .listBulletFill
+        self.menubarIcon = UserDefaults.menubarIcon ?? .listBulletFill
     }
 
 }
