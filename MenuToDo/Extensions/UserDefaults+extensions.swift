@@ -13,7 +13,15 @@ extension UserDefaults {
 }
 
 @propertyWrapper
-class UserDefaultObject<Value: Codable>: UserDefaultBase<UserDefaultObject.Keys> {
+struct UserDefaultObject<Value: Codable>: UserDefaultable {
+    let key: Keys
+    let container: UserDefaults?
+
+    init(key: Keys, container: UserDefaults? = .standard) {
+        self.key = key
+        self.container = container
+    }
+
     enum Keys: String {
         case menubarIcon
     }
@@ -55,15 +63,14 @@ class UserDefaultObject<Value: Codable>: UserDefaultBase<UserDefaultObject.Keys>
     }
 }
 
-class UserDefaultBase<Key: RawRepresentable> where Key.RawValue == String {
-    let key: Key
-    let container: UserDefaults?
+private protocol UserDefaultable {
+    associatedtype Keys: RawRepresentable where Keys.RawValue == String
 
-    init(key: Key, container: UserDefaults? = .standard) {
-        self.key = key
-        self.container = container
-    }
+    var key: Keys { get }
+    var container: UserDefaults? { get }
+}
 
+extension UserDefaultable {
     func removeValue() {
         container?.removeObject(forKey: constructedKey)
     }
